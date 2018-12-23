@@ -1,0 +1,35 @@
+secret_key_base: Kmjim5OJx_y752LE-vKI8cAU0jE2yNZD2X1V26VSB-g
+port: 3000
+name: test
+
+logging:
+  severity: debug
+  colorize: true
+  filter:
+    - password
+    - confirm_password
+  context:
+    - request
+    - session
+    - headers
+    - cookies
+    - params
+
+host: 0.0.0.0
+port_reuse: false
+process_count: 1
+# ssl_key_file:
+# ssl_cert_file:
+redis_url: "redis://localhost:6379"
+auto_reload: false
+
+session:
+  key: amber.session
+  store: signed_cookie
+  expires: 0
+
+smtp:
+  enabled: false
+
+secrets:
+  description: Store your development secrets credentials and settings here.

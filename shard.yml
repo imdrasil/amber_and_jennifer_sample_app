@@ -1,0 +1,46 @@
+name: amber_jennifer_sample_app
+version: 0.1.0
+
+authors:
+  - Roman Kalnytskyi <moranibaca@gmail.com>
+
+targets:
+  amber_jennifer_sample_app:
+    main: src/amber_jennifer_sample_app.cr
+  amber:
+    main: lib/amber/src/amber/cli.cr
+
+crystal: 0.27.0
+
+license: UNLICENSED
+
+dependencies:
+  amber:
+    github: amberframework/amber
+  jennifer:
+    github: imdrasil/jennifer.cr
+    branch: release/0.7.0
+  sam:
+    github: imdrasil/sam.cr
+  pg:
+    github: will/crystal-pg
+  carbon:
+    github: luckyframework/carbon
+  jasper_helpers:
+    github: amberframework/jasper-helpers
+    version: ~> 0.2.1
+  citrine-i18n:
+    github: amberframework/citrine-i18n
+    version: 0.3.2
+  form_object:
+    github: imdrasil/form_object
+    branch: add_form_nesting
+  pager:
+    github: imdrasil/pager
+
+development_dependencies:
+  email_opener:
+    github: imdrasil/email_opener
+  garnet_spec:
+    github: amberframework/garnet-spec
+    version: ~> 0.2.1

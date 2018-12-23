@@ -1,0 +1,58 @@
+---
+__formats__:
+  time:
+    formats:
+      default: "%F"
+application_controller:
+  title: Sample Amber & Jennifer App
+  ensure_login: Must be signed in
+account_activation_controller:
+  edit:
+    success: Account activated!
+    danger: Invalid activation link.
+home_controller:
+  about:
+    title: About
+microposts_controller:
+  create:
+    success: Micropost created
+  destroy:
+    success: Micropost deleted
+    alert: Micropost can't be deleted
+password_resets_controller:
+  valdiate_user: User with given email doesn't exist.
+  check_expiration: Password reset has expired.
+  new:
+    title: Forgot password
+  create:
+    info: Email has been sent with password reset information
+    danger: Email address is not found
+  update:
+    success: Password has been reset
+session_controller:
+  new:
+    title: Log in
+  create:
+    info: Successfully signed in
+    warning: Account isn't activated. Check your email for the activation link.
+    danger: Invalid email or password.
+  destroy:
+    info: Logged out.
+users_controller:
+  edit:
+    title: Edit user
+  index:
+    title: All users
+  new:
+    title: Sign up
+  following:
+    title: Following
+  followers:
+    title: Followers
+  create:
+    success: User is created successfully.
+    danger: Could not create user
+  update:
+    success: Profile updated
+  destroy:
+    success: User deleted
