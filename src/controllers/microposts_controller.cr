@@ -14,7 +14,7 @@ class MicropostsController < ApplicationController
       redirect_to root_path
     else
       feed_items = current_user!.microposts_query.paginate(page)
-      render "home/index.slang"
+      page(Home::IndexView, feed_items)
     end
   end
 

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action do
-    only %i(index show edit update destroy following followers) { ensure_login }
+    only %i(index show edit update destroy following followers) do
+      ensure_login
+    end
 
     only %i(destroy) do
       redirect_to root_path unless current_user!.admin?
@@ -8,15 +10,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @page_title = t("index.title")
     users = User.all.where { _activated }.paginate(page)
-    render "index.slang"
+    page(Users::IndexView, users)
   end
 
   def new
-    @page_title = t("new.title")
     user = NewUserForm.new(User.new)
-    render("new.slang")
+    page(Users::NewView, user)
   end
 
   def show
@@ -25,9 +25,8 @@ class UsersController < ApplicationController
       redirect_to root_path
       return
     end
-    @page_title = user.name
     microposts = user.microposts_query.paginate(page)
-    render "show.slang"
+    page(Users::ShowView, user, microposts)
   end
 
   def create
@@ -37,19 +36,18 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash["danger"] = t("create.danger")
-      render "new.slang"
+      page(Users::NewView, user)
     end
   end
 
   def edit
-    @page_title = t("edit.title")
     user = User.find!(params[:id])
     unless current_user?(user)
       redirect_to root_path
       return
     end
     form = UpdateUserForm.new(user)
-    render "edit.slang"
+    page(Users::EditView, user, form)
   end
 
   def update
@@ -63,7 +61,7 @@ class UsersController < ApplicationController
       flash[:success] = t("update.success")
       redirect_to root_path
     else
-      render "edit.slang"
+      page(Users::EditView, user, form)
     end
   end
 
@@ -75,17 +73,15 @@ class UsersController < ApplicationController
 
   def following
     @page_title = t("following.title")
-    current_path = following_user_path(params[:id])
     this_user = User.find!(params[:id])
     users = this_user.following_query.paginate(page)
-    render "show_follow.slang"
+    page(Users::FollowView, this_user, users)
   end
 
   def followers
-    title = t("followers.title")
-    current_path = following_user_path(params[:id])
+    @page_title = title = t("followers.title")
     this_user = User.find!(params[:id])
     users = this_user.followers_query.paginate(page)
-    render "show_follow.slang"
+    page(Users::FollowView, this_user, users)
   end
 end

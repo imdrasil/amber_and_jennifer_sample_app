@@ -26,9 +26,6 @@ dependencies:
     github: will/crystal-pg
   carbon:
     github: luckyframework/carbon
-  jasper_helpers:
-    github: amberframework/jasper-helpers
-    version: ~> 0.2.1
   citrine-i18n:
     github: amberframework/citrine-i18n
     version: 0.3.2
@@ -37,6 +34,9 @@ dependencies:
     branch: add_form_nesting
   pager:
     github: imdrasil/pager
+  view_model:
+    github: imdrasil/view_model.cr
+    branch: feature/enhance_view_model_object
 
 development_dependencies:
   email_opener:

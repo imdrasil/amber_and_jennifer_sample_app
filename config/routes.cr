@@ -29,14 +29,12 @@ Amber::Server.configure do
   end
 
   routes :web do
-
     get "/", HomeController, :index
     get "/about", HomeController, :about
 
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :create
-    # delete "/sign_out", SessionController, :destroy
-    get "/sign_out", SessionController, :destroy
+    delete "/sign_out", SessionController, :destroy
 
     get "/sign_up", UsersController, :new
     post "/sign_up", UsersController, :create

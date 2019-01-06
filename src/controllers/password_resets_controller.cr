@@ -9,13 +9,12 @@ class PasswordResetsController < ApplicationController
   end
 
   def new
-    @page_title = t("new.title")
-    render "new.slang"
+    page(PasswordResets::NewView)
   end
 
   def edit
     form = ResetPasswordForm.new(user!)
-    render "edit.slang"
+    page(PasswordResets::EditView, form, params[:id].to_s)
   end
 
   def create
@@ -25,7 +24,7 @@ class PasswordResetsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = t("create.danger")
-      render "new.slang"
+      page(PasswordResets::NewView)
     end
   end
 
@@ -36,12 +35,12 @@ class PasswordResetsController < ApplicationController
       flash[:success] = t("update.success")
       redirect_to user_path(user!.id)
     else
-      render "edit.slang"
+      page(PasswordResets::EditView, form, params[:id].to_s)
     end
   end
 
   private def user
-    @user ||= User.where { _email == params[:email] }.first
+    @user ||= User.where { _email == (params["email"]? || params["password_reset[email]"]?) }.first
   end
 
   private def user!

@@ -13,6 +13,9 @@ require "../src/handlers/**"
 
 require "../src/form_objects/**"
 
+require "../src/views/application_view"
+require "../src/views/**"
+
 require "../src/controllers/application_controller"
 require "../src/controllers/**"
 

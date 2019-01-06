@@ -3,6 +3,8 @@ require "./concerns/user_authentication"
 class ResetPasswordForm < FormObject::Base(User)
   include UserAuthentication
 
+  path "reset_password"
+
   delegate :email, :id, to: :resource
 
   def persist

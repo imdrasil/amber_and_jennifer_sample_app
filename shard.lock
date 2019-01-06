@@ -2,7 +2,7 @@ version: 1.0
 shards:
   amber:
     github: amberframework/amber
-    version: 0.11.1
+    version: 0.11.2
 
   amber_router:
     github: amberframework/amber-router
@@ -36,9 +36,13 @@ shards:
     github: imdrasil/email_opener
     version: 0.1.0
 
+  exception_page:
+    github: crystal-loot/exception_page
+    version: 0.1.1
+
   form_object:
     github: imdrasil/form_object
-    commit: d1cc68ae738c464c131d1557ee1a642f201bfcdb
+    commit: 108dfae07323805fd8ff8a09007362374c73807b
 
   garnet_spec:
     github: amberframework/garnet-spec
@@ -130,5 +134,5 @@ shards:
 
   view_model:
     github: imdrasil/view_model.cr
-    commit: 127fc10fc9d5fc8a7abeda76ab688c3019706b26
+    commit: 24a43bc89cf58d6d6c945ef236cb80227e853c21
 

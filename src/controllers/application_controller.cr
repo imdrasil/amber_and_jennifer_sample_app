@@ -1,30 +1,20 @@
-require "jasper_helpers"
 require "./concerns/*"
 
 class ApplicationController < Amber::Controller::Base
-  include JasperHelpers
+  include ViewModel
   include RouterHelper
-  include ViewHelper
-  include Pager::ViewHelper
-
-  @page_title : String = I18n.translate("application_controller.title")
+  include SessionHelper
 
   LAYOUT = "application.slang"
 
+  @page_title : String? = nil
+
+  macro page(klass, *args)
+    {{klass}}.new({{args.splat}}{% if args.size > 0 %},{% end %} context, flash, current_user, @page_title).render
+  end
+
   def current_user
     context.current_user
-  end
-
-  def current_user?(user : User)
-    current_user.try(&.id.==(user.id))
-  end
-
-  def current_user!
-    current_user.not_nil!
-  end
-
-  def signed_in?
-    current_user ? true : false
   end
 
   private def redirect_back
@@ -47,9 +37,5 @@ class ApplicationController < Amber::Controller::Base
 
   private def t(key, *args, **opts)
     I18n.translate("#{self.class.to_s.underscore}.#{key}", *args, **opts)
-  end
-
-  private def l(*args, **opts)
-    I18n.localize(*args, **opts)
   end
 end

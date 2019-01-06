@@ -5,6 +5,8 @@ class NewUserForm < FormObject::Base(User)
   include UserFields
   include UserAuthentication
 
+  path "user"
+
   property activation_token : String?
 
   # TODO: think about this to make it work
